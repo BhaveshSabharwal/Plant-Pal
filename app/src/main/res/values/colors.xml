@@ -1,4 +1,9 @@
 <resources>
     <color name="green_transparent">#A3C1A8</color>
     <color name="cream">#F5F5E6</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="light_green">#A8C0A0</color>
+    <color name="dark_green">#2D6A4F</color>
+    <color name="dark_red">#9B2D30</color>
 </resources>
