@@ -1,9 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.plantpal">
 
     <!-- Camera permissions -->
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.camera" android:required="true"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -13,14 +19,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.plantpal">
 
+        <!-- MainActivity (Launcher) -->
         <activity
-            android:name=".MainActivity" android:hardwareAccelerated="false"
-            android:exported="true">
+            android:name=".MainActivity"
+            android:exported="true"
+            android:hardwareAccelerated="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- MainActivity2 (Set exported=true for navigation) -->
+        <activity
+            android:name=".MainActivity2"
+            android:exported="true"
+            tools:ignore="MissingClass" />
 
     </application>
 

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">plantpal</string>
+    <string name="money_plant">Money Plant</string>
+    <string name="description_here">Description here</string>
+    <string name="join">Join</string>
+
 </resources>

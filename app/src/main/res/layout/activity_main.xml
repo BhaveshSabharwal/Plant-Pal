@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cream">
@@ -67,43 +68,21 @@
         android:layout_marginTop="16dp"/>
 
     <!-- Bottom Navigation Bar -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottomNavBar"
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/green_transparent"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_height="wrap_content"
+        android:background="@color/light_green"
+        app:itemIconTint="@color/dark_green"
+        app:itemTextColor="@color/dark_green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
-        <!-- Search Icon -->
-        <ImageView
-            android:id="@+id/searchIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_search"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="32dp"/>
-
-        <!-- Home Icon -->
-        <ImageView
-            android:id="@+id/homeIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_home"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <!-- Group Icon -->
-        <ImageView
-            android:id="@+id/groupIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_group"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="32dp"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

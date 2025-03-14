@@ -7,13 +7,14 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.plantpal.MainActivity2
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.*
 import org.tensorflow.lite.Interpreter
 import java.io.FileInputStream
@@ -35,11 +36,33 @@ class MainActivity : AppCompatActivity() {
         imageView = findViewById(R.id.imageView)
         resultTextView = findViewById(R.id.resultTextView)
         captureButton = findViewById(R.id.captureButton)
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
 
         tflite = Interpreter(loadModelFile("plant_model.tflite"))
 
         captureButton.setOnClickListener {
             checkCameraPermissionAndOpenCamera()
+        }
+        bottomNav.selectedItemId = R.id.home
+
+        // Handle Bottom Navigation Clicks
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.g -> { // Profile button clicked
+                    val intent = Intent(this, MainActivity2::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.home -> {
+                    // Handle Home button click if needed
+                    true
+                }
+                R.id.search -> {
+                    // Handle Search button click if needed
+                    true
+                }
+                else -> false
+            }
         }
     }
 
