@@ -52,6 +52,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity3::class.java)
             startActivity(intent)
         }
+        val profileButton = findViewById<ImageView>(R.id.topRightIcon) // Ensure this ID matches your layout
+        profileButton.setOnClickListener {
+            val intent = Intent(this, MainActivity4::class.java)
+            startActivity(intent)
+        }
+
 
         // Set bottom navigation behavior
         bottomNav.selectedItemId = R.id.home

@@ -39,6 +39,10 @@
             android:name=".MainActivity3"
             android:exported="true"
             tools:ignore="MissingClass" />
+        <activity
+            android:name=".MainActivity4"
+            android:exported="true"
+            tools:ignore="MissingClass" />
 
     </application>
 
