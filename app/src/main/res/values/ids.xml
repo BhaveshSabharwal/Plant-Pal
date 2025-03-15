@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="humidityTextView" type="id" />
+    <item name="goodHealthIndicatorsTextView" type="id" />
+    <item name="temperatureTextView" type="id" />
+    <item name="moistureTextView" type="id" />
+    <item name="soilTypeTextView" type="id" />
+    <item name="growthHeightTextView" type="id" />
+    <item name="commonPestsTextView" type="id" />
+    <item name="bestMonthsTextView" type="id" />
+    <item name="familyTextView" type="id" />
+    <item name="scientificNameTextView" type="id" />
+</resources>
