@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var captureButton: Button
     private lateinit var icCluster: ImageView
     private lateinit var tflite: Interpreter
-    private val labels = arrayOf("Healthy", "Diseased", "Other")
+    private val labels = arrayOf("Aloevera", "Marigold", "Rose", "Snakeplant", "Sunflower", "Tulips")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity4::class.java)
             startActivity(intent)
         }
-
 
         // Set bottom navigation behavior
         bottomNav.selectedItemId = R.id.home
