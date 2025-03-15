@@ -46,7 +46,8 @@ dependencies {
     implementation("org.tensorflow:tensorflow-lite:2.12.0") // Core TensorFlow Lite
     implementation("org.tensorflow:tensorflow-lite-gpu:2.12.0") // Optional: GPU acceleration
     implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
-
+    implementation ("com.google.code.gson:gson:2.8.9")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
 
     // Testing
     testImplementation(libs.junit)

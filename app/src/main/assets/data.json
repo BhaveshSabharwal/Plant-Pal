@@ -1,0 +1,110 @@
+[
+  {
+    "Plant Name": "Tulips",
+    "Scientific_name": "Tulipa spp.",
+    "Family": "Liliaceae",
+    "Best_Months": "March to May",
+    "common_pests": ["Aphids", "Slugs"],
+    "growth_height": "10-70 cm",
+    "Soil Type": "Well-drained, sandy or loamy",
+    "Moisture": "Moderate",
+    "Temperature": "15-20°C",
+    "Humidity": "Low to moderate",
+    "Good Health Indicators": [
+      "Glossy green leaves", 
+      "Strong stems",
+      "Vibrant blooms", 
+      "No yellowing leaves"
+    ]
+  },
+  {
+    "Plant Name": "Sunflower",
+    "Scientific_name": "Helianthus annuus",
+    "Family": "Asteraceae",
+    "Best_Months": "June to September",
+    "common_pests": ["Aphids", "Cutworms"],
+    "growth_height": "150-300 cm",
+    "Soil Type": "Well-drained, nutrient-rich",
+    "Moisture": "Moderate",
+    "Temperature": "20-30°C",
+    "Humidity": "Low to moderate",
+    "Good Health Indicators": [
+      "Tall, sturdy stems", 
+      "Large vibrant flowers",
+      "Deep green leaves", 
+      "No wilting"
+    ]
+  },
+  {
+    "Plant Name": "Aloe Vera",
+    "Scientific_name": "Aloe barbadensis miller",
+    "Family": "Asphodelaceae",
+    "Best_Months": "Year-round",
+    "common_pests": ["Mealybugs", "Aphids"],
+    "growth_height": "30-100 cm",
+    "Soil Type": "Sandy, well-drained",
+    "Moisture": "Low",
+    "Temperature": "15-25°C",
+    "Humidity": "Low",
+    "Good Health Indicators": [
+      "Thick, fleshy green leaves", 
+      "No brown tips",
+      "Strong upright growth", 
+      "Firm texture"
+    ]
+  },
+  {
+    "Plant Name": "Snake Plant",
+    "Scientific_name": "Sansevieria trifasciata",
+    "Family": "Asparagaceae",
+    "Best_Months": "Year-round",
+    "common_pests": ["Spider mites", "Mealybugs"],
+    "growth_height": "30-120 cm",
+    "Soil Type": "Well-drained, sandy",
+    "Moisture": "Low",
+    "Temperature": "15-30°C",
+    "Humidity": "Low to moderate",
+    "Good Health Indicators": [
+      "Upright, sturdy leaves", 
+      "No soft spots",
+      "Vivid green patterns", 
+      "No curling or yellowing"
+    ]
+  },
+  {
+    "Plant Name": "Rose",
+    "Scientific_name": "Rosa spp.",
+    "Family": "Rosaceae",
+    "Best_Months": "Spring, Summer",
+    "common_pests": ["Aphids", "Japanese beetles"],
+    "growth_height": "50-200 cm",
+    "Soil Type": "Loamy, well-drained",
+    "Moisture": "Moderate",
+    "Temperature": "15-25°C",
+    "Humidity": "Moderate",
+    "Good Health Indicators": [
+      "Glossy green leaves", 
+      "Strong stems",
+      "Fragrant blooms", 
+      "No black spots"
+    ]
+  },
+  {
+    "Plant Name": "Marigold",
+    "Scientific_name": "Tagetes spp.",
+    "Family": "Asteraceae",
+    "Best_Months": "Spring, Summer",
+    "common_pests": ["Aphids", "Spider mites"],
+    "growth_height": "30-90 cm",
+    "Soil Type": "Well-drained, moderately fertile",
+    "Moisture": "Moderate",
+    "Temperature": "18-30°C",
+    "Humidity": "Low to moderate",
+    "Good Health Indicators": [
+      "Bright green foliage", 
+      "Abundant flowers",
+      "No wilting", 
+      "No yellowing leaves"
+    ]
+  }
+]

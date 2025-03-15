@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var captureButton: Button
     private lateinit var icCluster: ImageView
     private lateinit var tflite: Interpreter
-    private val labels = arrayOf("Aloevera", "Marigold", "Rose", "Snakeplant", "Sunflower", "Tulips")
+    private val labels = arrayOf("Aloe Vera", "Marigold", "Rose", "Snake Plant", "Sunflower", "Tulips")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
