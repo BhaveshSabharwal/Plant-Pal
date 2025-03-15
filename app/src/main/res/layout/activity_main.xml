@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="16dp"/>
 
-    <!-- Top Right Circular Icon -->
+    <!-- Top Right Circular Icon -->    
     <ImageView
         android:id="@+id/topRightIcon"
         android:layout_width="50dp"
