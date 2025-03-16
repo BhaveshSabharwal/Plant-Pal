@@ -10,5 +10,5 @@
     <item
         android:id="@+id/g"
         android:icon="@drawable/ic_profile"
-        android:title="Profile" />
+        android:title="Community" />
 </menu>

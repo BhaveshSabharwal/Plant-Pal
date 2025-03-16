@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -15,12 +13,6 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main2)
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
         // Set up RecyclerView
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
@@ -34,19 +26,16 @@ class MainActivity2 : AppCompatActivity() {
             when (item.itemId) {
                 R.id.home -> {
                     val intent = Intent(this, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP // Clears back stack
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                     startActivity(intent)
-                    finish() // Closes MainActivity2
+                    finish()
                     true
                 }
                 R.id.search -> {
                     startActivity(Intent(this, MainActivity5::class.java))
                     true
                 }
-                R.id.g -> {
-                    // Already in Profile, no action needed
-                    true
-                }
+                R.id.g -> true
                 else -> false
             }
         }
@@ -57,7 +46,7 @@ class MainActivity2 : AppCompatActivity() {
             Plant("Plant Care", "Connect with fellow parents and share tips"),
             Plant("Flowers", "Flower caring community"),
             Plant("Snake Plant", "Snake plant care tips"),
-            Plant("Basil Co.", "Everything basil"),
+            Plant("Basil Co.", "Everything basil")
         )
     }
 }

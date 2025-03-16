@@ -152,13 +152,13 @@ class MainActivity5 : AppCompatActivity() {
         }
 
         icCluster.setOnClickListener {
-            val intent = Intent(this, MainActivity3::class.java)
+            val intent = Intent(this, MainActivity4::class.java)
             startActivity(intent)
         }
 
         val profileButton = findViewById<ImageView>(R.id.topRightIcon)
         profileButton.setOnClickListener {
-            val intent = Intent(this, MainActivity4::class.java)
+            val intent = Intent(this, MainActivity3::class.java)
             startActivity(intent)
         }
 
@@ -215,7 +215,7 @@ class MainActivity5 : AppCompatActivity() {
             val (resultIndex, confidence) = processImage(bitmap)
             withContext(Dispatchers.Main) {
                 // Define a confidence threshold for the prediction
-                val confidenceThreshold = 0.98f
+                val confidenceThreshold = 0.7f
 
                 if (confidence >= confidenceThreshold && resultIndex in labels.indices) {
                     val plantName = labels[resultIndex]

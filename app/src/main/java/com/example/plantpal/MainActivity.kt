@@ -19,12 +19,12 @@ class MainActivity : AppCompatActivity() {
 
         // Top Left Icon Click - Open MainActivity3
         topLeftIcon.setOnClickListener {
-            startActivity(Intent(this, MainActivity3::class.java))
+            startActivity(Intent(this, MainActivity4::class.java))
         }
 
         // Top Right Icon Click - Open MainActivity4
         topRightIcon.setOnClickListener {
-            startActivity(Intent(this, MainActivity4::class.java))
+            startActivity(Intent(this, MainActivity3::class.java))
         }
         bottomNav.selectedItemId=R.id.home
         // Bottom Navigation Handling
