@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cream"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity5">
 
-    <!-- Top Left Circular Icon -->
     <ImageView
         android:id="@+id/topLeftIcon"
         android:layout_width="50dp"
@@ -18,9 +17,8 @@
         android:src="@drawable/ic_cluster"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp" />
 
-    <!-- Top Right Circular Icon -->
     <ImageView
         android:id="@+id/topRightIcon"
         android:layout_width="50dp"
@@ -30,9 +28,8 @@
         android:src="@drawable/ic_profile"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp" />
 
-    <!-- ImageView for Captured Image -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="200dp"
@@ -41,9 +38,8 @@
         app:layout_constraintTop_toBottomOf="@id/topLeftIcon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp" />
 
-    <!-- Result Text -->
     <TextView
         android:id="@+id/resultTextView"
         android:layout_width="wrap_content"
@@ -55,9 +51,8 @@
         app:layout_constraintTop_toBottomOf="@id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp" />
 
-    <!-- Capture Button -->
     <Button
         android:id="@+id/captureButton"
         android:layout_width="wrap_content"
@@ -66,9 +61,8 @@
         app:layout_constraintTop_toBottomOf="@id/resultTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp" />
 
-    <!-- ScrollView for Data Section -->
     <ScrollView
         android:id="@+id/scrollViewData"
         android:layout_width="0dp"
@@ -85,79 +79,97 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Plant details -->
             <TextView
                 android:id="@+id/plantDetails"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Plant details"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textColor="@android:color/black"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="8dp"
+                android:lineSpacingExtra="4dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/scientificName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Scientific name: Aloe Vera\nFamily: Asphodelaceae\nBest Months: May to September\nCommon Pests: Aphids, Mites\nGrowth height: 24 inches"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"
-                android:layout_marginTop="8dp"/>
-
-            <!-- Soil section -->
-            <TextView
-                android:id="@+id/soilSection"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Soil"
-                android:textSize="20sp"
-                android:textColor="@android:color/black"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="4dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/family"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Soil Type: Sandy, well-draining\nMoisture: Dry"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"
-                android:layout_marginTop="8dp"/>
-
-            <!-- Environment section -->
-            <TextView
-                android:id="@+id/environmentSection"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Environment"
-                android:textSize="20sp"
-                android:textColor="@android:color/black"
-                android:layout_marginTop="16dp"/>
+                android:layout_marginTop="4dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/bestMonths"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Temperature: 55-80°F (13-27°C)\nHumidity: Low"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="4dp" />
 
-            <!-- Good health indicators -->
+            <TextView
+                android:id="@+id/commonPests"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/growthHeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/soilType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/moisture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/temperature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/humidity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="4dp" />
+
             <TextView
                 android:id="@+id/healthIndicators"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Good Health Indicators"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:textColor="@android:color/black"
-                android:layout_marginTop="16dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Glossy green leaves, strong stems, fragrant blooms, no black spots."
-                android:textColor="@android:color/black"
-                android:layout_marginTop="8dp"/>
-
+                android:layout_marginTop="4dp" />
         </LinearLayout>
-
     </ScrollView>
 
-    <!-- Bottom Navigation Bar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"

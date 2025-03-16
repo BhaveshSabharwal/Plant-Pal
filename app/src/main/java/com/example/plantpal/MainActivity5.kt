@@ -49,7 +49,6 @@ class MainActivity5 : AppCompatActivity() {
     )
 
     private val plantData = listOf(
-        // ... (your plant data)
         Plant(
             "Aloe Vera",
             "Aloe barbadensis miller",
@@ -144,7 +143,7 @@ class MainActivity5 : AppCompatActivity() {
 
         resultTextView.text = "Result will be displayed here"
         plantDetailsTextView.text = ""
-        scrollViewData.visibility = View.GONE // Hide plant details until scanned
+        scrollViewData.visibility = View.GONE
 
         tflite = Interpreter(loadModelFile("plant_model.tflite"))
 
@@ -215,26 +214,32 @@ class MainActivity5 : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val resultIndex = processImage(bitmap)
             withContext(Dispatchers.Main) {
-                if (resultIndex in plantData.indices) {
-                    val plant = plantData[resultIndex]
-                    val plantDetails = """
-                        Plant Name: ${plant.plantName}
-                        Scientific Name: ${plant.scientificName}
-                        Family: ${plant.family}
-                        Best Months to Grow: ${plant.bestMonths}
-                        Common Pests: ${plant.commonPests.joinToString(", ")}
-                        Growth Height: ${plant.growthHeight}
-                        Soil Type: ${plant.soilType}
-                        Moisture: ${plant.moisture}
-                        Temperature: ${plant.temperature}
-                        Humidity: ${plant.humidity}
-                        Health Indicators: ${plant.healthIndicators.joinToString(", ")}
-                    """.trimIndent()
+                if (resultIndex in labels.indices) {
+                    val plantName = labels[resultIndex]
+                    val plant = plantData.find { it.plantName == plantName }
 
-                    resultTextView.text = plant.plantName // Show only the name.
-                    plantDetailsTextView.text = plantDetails
-                    scrollViewData.visibility = View.VISIBLE // Show plant details.
+                    if (plant != null) {
+                        val plantDetails = """
+                            Plant Name: ${plant.plantName}
+                            Scientific Name: ${plant.scientificName}
+                            Family: ${plant.family}
+                            Best Months to Grow: ${plant.bestMonths}
+                            Common Pests: ${plant.commonPests.joinToString(", ")}
+                            Growth Height: ${plant.growthHeight}
+                            Soil Type: ${plant.soilType}
+                            Moisture: ${plant.moisture}
+                            Temperature: ${plant.temperature}
+                            Humidity: ${plant.humidity}
+                            Health Indicators: ${plant.healthIndicators.joinToString(", ")}
+                        """.trimIndent()
 
+                        resultTextView.text = plant.plantName
+                        plantDetailsTextView.text = plantDetails
+                        scrollViewData.visibility = View.VISIBLE
+                    } else {
+                        resultTextView.text = "Prediction: Plant data not found for $plantName"
+                        scrollViewData.visibility = View.GONE
+                    }
                 } else {
                     resultTextView.text = "Prediction: Unknown plant"
                     scrollViewData.visibility = View.GONE
