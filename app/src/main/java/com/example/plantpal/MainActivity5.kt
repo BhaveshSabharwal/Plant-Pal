@@ -21,7 +21,7 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.channels.FileChannel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity5 : AppCompatActivity() {
     private lateinit var imageView: ImageView
     private lateinit var resultTextView: TextView
     private lateinit var captureButton: Button
@@ -29,9 +29,107 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tflite: Interpreter
     private val labels = arrayOf("Aloe Vera", "Marigold", "Rose", "Snake Plant", "Sunflower", "Tulips")
 
+    data class Plant(
+        val plantName: String,
+        val scientificName: String,
+        val family: String,
+        val bestMonths: String,
+        val commonPests: List<String>,
+        val growthHeight: String,
+        val soilType: String,
+        val moisture: String,
+        val temperature: String,
+        val humidity: String,
+        val healthIndicators: List<String>
+    )
+
+
+    private val plantData = listOf(
+        Plant(
+            "Aloe Vera",
+            "Aloe barbadensis miller",
+            "Asphodelaceae",
+            "Year-round",
+            listOf("Mealybugs", "Aphids"),
+            "30-100 cm",
+            "Sandy, well-drained",
+            "Low",
+            "15-25°C",
+            "Low",
+            listOf("Thick, fleshy green leaves", "No brown tips", "Strong upright growth", "Firm texture")
+        ),
+        Plant(
+            "Marigold",
+            "Tagetes spp.",
+            "Asteraceae",
+            "Spring, Summer",
+            listOf("Aphids", "Spider mites"),
+            "30-90 cm",
+            "Well-drained, moderately fertile",
+            "Moderate",
+            "18-30°C",
+            "Low to moderate",
+            listOf("Bright green foliage", "Abundant flowers", "No wilting", "No yellowing leaves")
+        ),
+        Plant(
+            "Rose",
+            "Rosa spp.",
+            "Rosaceae",
+            "Spring, Summer",
+            listOf("Aphids", "Japanese beetles"),
+            "50-200 cm",
+            "Loamy, well-drained",
+            "Moderate",
+            "15-25°C",
+            "Moderate",
+            listOf("Glossy green leaves", "Strong stems", "Fragrant blooms", "No black spots")
+        ),
+        Plant(
+            "Snake Plant",
+            "Sansevieria trifasciata",
+            "Asparagaceae",
+            "Year-round",
+            listOf("Spider mites", "Mealybugs"),
+            "30-120 cm",
+            "Well-drained, sandy",
+            "Low",
+            "15-30°C",
+            "Low to moderate",
+            listOf("Upright, sturdy leaves", "No soft spots", "Vivid green patterns", "No curling or yellowing")
+        ),
+        Plant(
+            "Sunflower",
+            "Helianthus annuus",
+            "Asteraceae",
+            "June to September",
+            listOf("Aphids", "Cutworms"),
+            "150-300 cm",
+            "Well-drained, nutrient-rich",
+            "Moderate",
+            "20-30°C",
+            "Low to moderate",
+            listOf("Tall, sturdy stems", "Large vibrant flowers", "Deep green leaves", "No wilting")
+        ),
+        Plant(
+            "Tulips",
+            "Tulipa spp.",
+            "Liliaceae",
+            "March to May",
+            listOf("Aphids", "Slugs"),
+            "10-70 cm",
+            "Well-drained, sandy or loamy",
+            "Moderate",
+            "15-20°C",
+            "Low to moderate",
+            listOf("Glossy green leaves", "Strong stems", "Vibrant blooms", "No yellowing leaves")
+        )
+    )
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main5)
 
         imageView = findViewById(R.id.imageView)
         resultTextView = findViewById(R.id.resultTextView)
@@ -67,12 +165,12 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
-                R.id.home -> true
-                R.id.search -> {
-                    val intent = Intent(this, MainActivity5::class.java) // Open MainActivity5
+                R.id.home -> {
+                    val intent = Intent(this, MainActivity::class.java) // Open MainActivity5
                     startActivity(intent)
                     true
                 }
+                R.id.search -> true
                 else -> false
             }
         }
@@ -109,27 +207,42 @@ class MainActivity : AppCompatActivity() {
 
     private fun processImageAsync(bitmap: Bitmap) {
         CoroutineScope(Dispatchers.IO).launch {
-            val result = processImage(bitmap)
+            val resultIndex = processImage(bitmap)
             withContext(Dispatchers.Main) {
-                resultTextView.text = result
+                val plantDetails = if (resultIndex in plantData.indices) {
+                    val plant = plantData[resultIndex]
+                    """
+                Plant Name: ${plant.plantName}
+                Scientific Name: ${plant.scientificName}
+                Family: ${plant.family}
+                Best Months to Grow: ${plant.bestMonths}
+                Common Pests: ${plant.commonPests.joinToString(", ")}
+                Growth Height: ${plant.growthHeight}
+                Soil Type: ${plant.soilType}
+                Moisture: ${plant.moisture}
+                Temperature: ${plant.temperature}
+                Humidity: ${plant.humidity}
+                Health Indicators: ${plant.healthIndicators.joinToString(", ")}
+                """.trimIndent()
+                } else {
+                    "Prediction: Unknown plant"
+                }
+                resultTextView.text = plantDetails
             }
         }
     }
 
-    private fun processImage(bitmap: Bitmap): String {
+
+    private fun processImage(bitmap: Bitmap): Int {
         val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
         val byteBuffer = convertBitmapToByteBuffer(resizedBitmap)
 
         val output = Array(1) { FloatArray(labels.size) }
         tflite.run(byteBuffer, output)
 
-        val predictedIndex = output[0].indices.maxByOrNull { output[0][it] } ?: -1
-        return if (predictedIndex in labels.indices) {
-            "Prediction: ${labels[predictedIndex]}"
-        } else {
-            "Prediction: Unknown"
-        }
+        return output[0].indices.maxByOrNull { output[0][it] } ?: -1
     }
+
 
     private fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
         val byteBuffer = ByteBuffer.allocateDirect(4 * 224 * 224 * 3).apply {
