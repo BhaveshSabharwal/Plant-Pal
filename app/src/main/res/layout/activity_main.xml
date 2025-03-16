@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cream">
+    android:background="@color/cream"
+    tools:context=".MainActivity">
 
     <!-- Top Left Circular Icon -->
     <ImageView
@@ -19,7 +20,22 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="16dp"/>
 
-    <!-- Top Right Circular Icon -->    
+    <!-- App Name "Plant Pal" -->
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plant Pal"
+        android:textSize="22sp"
+        android:textColor="@color/dark_green"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/topLeftIcon"
+        app:layout_constraintEnd_toStartOf="@id/topRightIcon"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="26dp"/>
+
+    <!-- Top Right Circular Icon -->
     <ImageView
         android:id="@+id/topRightIcon"
         android:layout_width="50dp"
@@ -31,44 +47,120 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"/>
 
-    <!-- ImageView for Captured Image -->
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toBottomOf="@id/topLeftIcon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50dp"/>
+    <!-- Scrollable Content Centered -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/topRightIcon"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
 
-    <!-- Result Text -->
-    <TextView
-        android:id="@+id/resultTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Result will be displayed here"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginTop="300px"
+            android:gravity="center_horizontal">
 
-    <!-- Capture Button -->
-    <Button
-        android:id="@+id/captureButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Capture Image"
-        app:layout_constraintTop_toBottomOf="@id/resultTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+            <!-- ImageView for Captured Image -->
+
+
+            <!-- Trending Communities Section -->
+            <TextView
+                android:id="@+id/trendingTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trending Communities"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_green"
+                android:layout_marginBottom="10dp"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:src="@drawable/deal1"
+                        android:layout_marginEnd="10dp"
+                        android:contentDescription="Trending 1"/>
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:src="@drawable/deal2"
+                        android:layout_marginEnd="10dp"
+                        android:contentDescription="Trending 2"/>
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:src="@drawable/deal3"
+                        android:layout_marginEnd="10dp"
+                        android:contentDescription="Trending 3"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Deals Section -->
+            <TextView
+                android:id="@+id/dealsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deals related to your plants:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_green"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="240dp"
+                        android:src="@drawable/deal1"
+                        android:layout_marginEnd="10dp"
+                        android:contentDescription="Deal 1"/>
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="240dp"
+                        android:src="@drawable/deal2"
+                        android:layout_marginEnd="10dp"
+                        android:contentDescription="Deal 2"/>
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="240dp"
+                        android:src="@drawable/deal3"
+                        android:layout_marginEnd="10dp"
+                        android:contentDescription="Deal 3"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+    </ScrollView>
 
     <!-- Bottom Navigation Bar -->
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
@@ -77,12 +169,5 @@
         app:itemIconTint="@color/dark_green"
         app:itemTextColor="@color/dark_green"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
-
-
+        app:menu="@menu/bottom_nav_menu"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
