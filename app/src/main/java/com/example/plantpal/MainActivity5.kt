@@ -1,3 +1,4 @@
+// MainActivity5.kt
 package com.example.plantpal
 
 import android.Manifest
@@ -7,8 +8,10 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +31,8 @@ class MainActivity5 : AppCompatActivity() {
     private lateinit var icCluster: ImageView
     private lateinit var tflite: Interpreter
     private val labels = arrayOf("Aloe Vera", "Marigold", "Rose", "Snake Plant", "Sunflower", "Tulips")
+    private lateinit var scrollViewData: ScrollView
+    private lateinit var plantDetailsTextView: TextView
 
     data class Plant(
         val plantName: String,
@@ -43,8 +48,8 @@ class MainActivity5 : AppCompatActivity() {
         val healthIndicators: List<String>
     )
 
-
     private val plantData = listOf(
+        // ... (your plant data)
         Plant(
             "Aloe Vera",
             "Aloe barbadensis miller",
@@ -125,8 +130,6 @@ class MainActivity5 : AppCompatActivity() {
         )
     )
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main5)
@@ -134,29 +137,32 @@ class MainActivity5 : AppCompatActivity() {
         imageView = findViewById(R.id.imageView)
         resultTextView = findViewById(R.id.resultTextView)
         captureButton = findViewById(R.id.captureButton)
-        icCluster = findViewById(R.id.topLeftIcon) // Find the cluster icon
+        icCluster = findViewById(R.id.topLeftIcon)
+        plantDetailsTextView = findViewById(R.id.plantDetails)
+        scrollViewData = findViewById(R.id.scrollViewData)
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
 
-        // Load TensorFlow Lite model
+        resultTextView.text = "Result will be displayed here"
+        plantDetailsTextView.text = ""
+        scrollViewData.visibility = View.GONE // Hide plant details until scanned
+
         tflite = Interpreter(loadModelFile("plant_model.tflite"))
 
-        // Handle capture button click
         captureButton.setOnClickListener {
             checkCameraPermissionAndOpenCamera()
         }
 
-        // Handle icCluster click to open MainActivity3
         icCluster.setOnClickListener {
             val intent = Intent(this, MainActivity3::class.java)
             startActivity(intent)
         }
-        val profileButton = findViewById<ImageView>(R.id.topRightIcon) // Ensure this ID matches your layout
+
+        val profileButton = findViewById<ImageView>(R.id.topRightIcon)
         profileButton.setOnClickListener {
             val intent = Intent(this, MainActivity4::class.java)
             startActivity(intent)
         }
 
-        // Set bottom navigation behavior
         bottomNav.selectedItemId = R.id.home
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -166,7 +172,7 @@ class MainActivity5 : AppCompatActivity() {
                     true
                 }
                 R.id.home -> {
-                    val intent = Intent(this, MainActivity::class.java) // Open MainActivity5
+                    val intent = Intent(this, MainActivity5::class.java)
                     startActivity(intent)
                     true
                 }
@@ -209,29 +215,33 @@ class MainActivity5 : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val resultIndex = processImage(bitmap)
             withContext(Dispatchers.Main) {
-                val plantDetails = if (resultIndex in plantData.indices) {
+                if (resultIndex in plantData.indices) {
                     val plant = plantData[resultIndex]
-                    """
-                Plant Name: ${plant.plantName}
-                Scientific Name: ${plant.scientificName}
-                Family: ${plant.family}
-                Best Months to Grow: ${plant.bestMonths}
-                Common Pests: ${plant.commonPests.joinToString(", ")}
-                Growth Height: ${plant.growthHeight}
-                Soil Type: ${plant.soilType}
-                Moisture: ${plant.moisture}
-                Temperature: ${plant.temperature}
-                Humidity: ${plant.humidity}
-                Health Indicators: ${plant.healthIndicators.joinToString(", ")}
-                """.trimIndent()
+                    val plantDetails = """
+                        Plant Name: ${plant.plantName}
+                        Scientific Name: ${plant.scientificName}
+                        Family: ${plant.family}
+                        Best Months to Grow: ${plant.bestMonths}
+                        Common Pests: ${plant.commonPests.joinToString(", ")}
+                        Growth Height: ${plant.growthHeight}
+                        Soil Type: ${plant.soilType}
+                        Moisture: ${plant.moisture}
+                        Temperature: ${plant.temperature}
+                        Humidity: ${plant.humidity}
+                        Health Indicators: ${plant.healthIndicators.joinToString(", ")}
+                    """.trimIndent()
+
+                    resultTextView.text = plant.plantName // Show only the name.
+                    plantDetailsTextView.text = plantDetails
+                    scrollViewData.visibility = View.VISIBLE // Show plant details.
+
                 } else {
-                    "Prediction: Unknown plant"
+                    resultTextView.text = "Prediction: Unknown plant"
+                    scrollViewData.visibility = View.GONE
                 }
-                resultTextView.text = plantDetails
             }
         }
     }
-
 
     private fun processImage(bitmap: Bitmap): Int {
         val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
@@ -242,7 +252,6 @@ class MainActivity5 : AppCompatActivity() {
 
         return output[0].indices.maxByOrNull { output[0][it] } ?: -1
     }
-
 
     private fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
         val byteBuffer = ByteBuffer.allocateDirect(4 * 224 * 224 * 3).apply {
