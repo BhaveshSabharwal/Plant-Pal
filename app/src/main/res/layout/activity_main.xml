@@ -18,7 +18,8 @@
         android:src="@drawable/ic_cluster"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"/>
 
     <!-- App Name "Plant Pal" -->
     <TextView
@@ -33,9 +34,11 @@
         app:layout_constraintStart_toEndOf="@id/topLeftIcon"
         app:layout_constraintEnd_toStartOf="@id/topRightIcon"
         app:layout_constraintHorizontal_bias="0.5"
-        android:layout_marginTop="26dp"/>
+        android:layout_marginTop="70dp"/>
 
     <!-- Top Right Circular Icon -->
+
+
     <ImageView
         android:id="@+id/topRightIcon"
         android:layout_width="50dp"
@@ -45,7 +48,8 @@
         android:src="@drawable/ic_profile"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="60dp" />
 
     <!-- Scrollable Content Centered -->
     <ScrollView

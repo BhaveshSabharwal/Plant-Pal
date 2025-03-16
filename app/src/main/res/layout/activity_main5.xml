@@ -17,7 +17,8 @@
         android:src="@drawable/ic_cluster"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="16dp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"/>
 
     <ImageView
         android:id="@+id/topRightIcon"
@@ -28,7 +29,10 @@
         android:src="@drawable/ic_profile"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="60dp" />
+
+
 
     <ImageView
         android:id="@+id/imageView"

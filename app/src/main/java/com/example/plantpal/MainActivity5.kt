@@ -212,26 +212,29 @@ class MainActivity5 : AppCompatActivity() {
 
     private fun processImageAsync(bitmap: Bitmap) {
         CoroutineScope(Dispatchers.IO).launch {
-            val resultIndex = processImage(bitmap)
+            val (resultIndex, confidence) = processImage(bitmap)
             withContext(Dispatchers.Main) {
-                if (resultIndex in labels.indices) {
+                // Define a confidence threshold for the prediction
+                val confidenceThreshold = 0.98f
+
+                if (confidence >= confidenceThreshold && resultIndex in labels.indices) {
                     val plantName = labels[resultIndex]
                     val plant = plantData.find { it.plantName == plantName }
 
                     if (plant != null) {
                         val plantDetails = """
-                            Plant Name: ${plant.plantName}
-                            Scientific Name: ${plant.scientificName}
-                            Family: ${plant.family}
-                            Best Months to Grow: ${plant.bestMonths}
-                            Common Pests: ${plant.commonPests.joinToString(", ")}
-                            Growth Height: ${plant.growthHeight}
-                            Soil Type: ${plant.soilType}
-                            Moisture: ${plant.moisture}
-                            Temperature: ${plant.temperature}
-                            Humidity: ${plant.humidity}
-                            Health Indicators: ${plant.healthIndicators.joinToString(", ")}
-                        """.trimIndent()
+                        Plant Name: ${plant.plantName}
+                        Scientific Name: ${plant.scientificName}
+                        Family: ${plant.family}
+                        Best Months to Grow: ${plant.bestMonths}
+                        Common Pests: ${plant.commonPests.joinToString(", ")}
+                        Growth Height: ${plant.growthHeight}
+                        Soil Type: ${plant.soilType}
+                        Moisture: ${plant.moisture}
+                        Temperature: ${plant.temperature}
+                        Humidity: ${plant.humidity}
+                        Health Indicators: ${plant.healthIndicators.joinToString(", ")}
+                    """.trimIndent()
 
                         resultTextView.text = plant.plantName
                         plantDetailsTextView.text = plantDetails
@@ -241,22 +244,29 @@ class MainActivity5 : AppCompatActivity() {
                         scrollViewData.visibility = View.GONE
                     }
                 } else {
-                    resultTextView.text = "Prediction: Unknown plant"
+                    // Fallback message when confidence is too low
+                    resultTextView.text = "Prediction uncertain. Please try again."
                     scrollViewData.visibility = View.GONE
                 }
             }
         }
     }
 
-    private fun processImage(bitmap: Bitmap): Int {
+    private fun processImage(bitmap: Bitmap): Pair<Int, Float> {
         val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
         val byteBuffer = convertBitmapToByteBuffer(resizedBitmap)
 
         val output = Array(1) { FloatArray(labels.size) }
         tflite.run(byteBuffer, output)
 
-        return output[0].indices.maxByOrNull { output[0][it] } ?: -1
+        // Get the index with the highest probability
+        val resultIndex = output[0].indices.maxByOrNull { output[0][it] } ?: -1
+        // Get the confidence (probability) of the predicted class
+        val confidence = if (resultIndex != -1) output[0][resultIndex] else 0f
+
+        return Pair(resultIndex, confidence)
     }
+
 
     private fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
         val byteBuffer = ByteBuffer.allocateDirect(4 * 224 * 224 * 3).apply {

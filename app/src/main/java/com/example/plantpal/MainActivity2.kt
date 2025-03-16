@@ -54,10 +54,10 @@ class MainActivity2 : AppCompatActivity() {
 
     private fun getPlantList(): List<Plant> {
         return listOf(
-            Plant("Money Plant", "Some description here"),
-            Plant("Aloe Vera", "Some description here"),
-            Plant("Snake Plant", "Some description here"),
-            Plant("Basil", "Some description here")
+            Plant("Plant Care", "Connect with fellow parents and share tips"),
+            Plant("Flowers", "Flower caring community"),
+            Plant("Snake Plant", "Snake plant care tips"),
+            Plant("Basil Co.", "Everything basil"),
         )
     }
 }
