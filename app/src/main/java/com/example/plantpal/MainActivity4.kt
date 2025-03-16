@@ -22,6 +22,11 @@ class MainActivity4 : AppCompatActivity() {
 
         // Open Cluster Screen
         icCluster.setOnClickListener {
+            val intent = Intent(this, MainActivity4::class.java)
+            startActivity(intent)
+        }
+        val profileButton = findViewById<ImageView>(R.id.topRightIcon)
+        profileButton.setOnClickListener {
             val intent = Intent(this, MainActivity3::class.java)
             startActivity(intent)
         }
