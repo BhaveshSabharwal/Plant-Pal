@@ -40,7 +40,7 @@ class MainActivity2 : AppCompatActivity() {
                     true
                 }
                 R.id.search -> {
-                    // Handle search action if needed
+                    startActivity(Intent(this, MainActivity5::class.java))
                     true
                 }
                 R.id.g -> {

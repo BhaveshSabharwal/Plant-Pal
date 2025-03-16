@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         topRightIcon.setOnClickListener {
             startActivity(Intent(this, MainActivity4::class.java))
         }
-
+        bottomNav.selectedItemId=R.id.home
         // Bottom Navigation Handling
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {

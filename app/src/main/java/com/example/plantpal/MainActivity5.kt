@@ -162,7 +162,7 @@ class MainActivity5 : AppCompatActivity() {
             startActivity(intent)
         }
 
-        bottomNav.selectedItemId = R.id.home
+        bottomNav.selectedItemId = R.id.search
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.g -> {
@@ -171,7 +171,7 @@ class MainActivity5 : AppCompatActivity() {
                     true
                 }
                 R.id.home -> {
-                    val intent = Intent(this, MainActivity5::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     true
                 }
